@@ -1,0 +1,92 @@
+[
+    {
+        "id": "1",
+        "title": "Study for exams",
+        "dueDate": "2026-10-14",
+        "duration": 60,
+        "tag": "Study",
+        "createdAt": "2026-10-10",
+        "updatedAt": "2026-10-10"
+    },
+    {
+        "id": "2",
+        "title": "Complete assignment",
+        "dueDate": "2026-10-15",
+        "duration": 90,
+        "tag": "Assignment",
+        "createdAt": "2026-10-10",
+        "updatedAt": "2026-10-10"
+    },
+    {
+        "id": "3",
+        "title": "Attend team meeting",
+        "dueDate": "2026-10-16",
+        "duration": 45,
+        "tag": "Meeting",
+        "createdAt": "2026-10-10",
+        "updatedAt": "2026-10-10"
+    },
+    {
+        "id": "4",
+        "title": "Review JavaScript",
+        "dueDate": "2026-10-17",
+        "duration": 60,
+        "tag": "Study",
+        "createdAt": "2026-10-10",
+        "updatedAt": "2026-10-10"
+    },
+    {
+        "id": "5",
+        "title": "Read course notes",
+        "dueDate": "2026-10-18",
+        "duration": 30,
+        "tag": "Study",
+        "createdAt": "2026-10-10",
+        "updatedAt": "2026-10-10"
+    },
+    { 
+        "id": "6",
+        "title": "Submit weekly reflection",
+        "dueDate": "2026-10-19",
+        "duration": 40,
+        "tag": "Assignment",
+        "createdAt": "2026-10-10",
+        "updatedAt": "2026-10-10"
+    },
+    {
+        "id": "7",
+        "title": "Plan the week",
+        "dueDate": "2026-10-20",
+        "duration": 20,
+        "tag": "Personal",
+        "createdAt": "2026-10-10",
+        "updatedAt": "2026-10-10"
+    },
+    {
+        "id": "8",
+        "title": "Work on group project",
+        "dueDate": "2026-10-21",
+        "duration": 90,
+        "tag": "Project",
+        "createdAt": "2026-10-10",
+        "updatedAt": "2026-10-10"
+    },
+    {
+        "id": "9",
+        "title": "Prepare presentation",
+        "dueDate": "2026-10-22",
+        "duration": 60,
+        "tag": "Assignment",
+        "createdAt": "2026-10-10",
+        "updatedAt": "2026-10-10"
+    },
+    {
+        "id": "10",
+        "title": "Organize study materials",
+        "dueDate": "2026-10-23",
+        "duration": 25,
+        "tag": "Personal",
+        "createdAt": "2026-10-10",
+        "updatedAt": "2026-10-10"
+    }
+]
