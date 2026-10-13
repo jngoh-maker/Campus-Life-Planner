@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campus Life Planner</title>
+
+<link rel="stylesheet" href="styles/styles.css">
+
+    </head>
+    <body>
+        <header>
+            <h1>Campus Life Planner</h1>
+            <p>Organize your study life with style</p>
+        </header>
+        <nav> 
+            <a href="#about">About</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="#records">Records</a>
+            <a href="#settings">Settings</a>
+        </nav>
+
+        <main id="main-content">
+            <a href="#main-content"> Skip to main content</a>
+
+<section id="about">
+    <h2>About Campus Life Planner</h2>
+    <p>This app helps students organize their campus activities and deadlines.</p>
+</section>
+
+<section id="dashboard">
+    <h2>Dashboard</h2>
+    <p>Welcome to your Campus Life Planner where you can view all your activities and deadlines.</p>
+
+    <div class="dashboard-cards">
+    <div class="stat-card">
+        <h3>Total Activities</h3>
+        <p id="total-activities">0</p>
+    </div>
+
+    <div class="stat-card">
+        <h3>Total Duration</h3>
+        <p id="total-duration">0 minutes</p>
+        <p id="total-hours">0 hours</p>
+    </div>
+
+    <div class="stat-card">
+    <h3>Top Tag</h3>
+    <p id="top-tag">None yet</p>
+    </div>
+</div>
+</section>
+
+<section id="records">
+    <h2>My Activities</h2>
+<p>You can always view your saved activities here.</p>
+
+<label for="sort-select">Sort activities by</label>
+<select id="sort-select">
+    <option value="title">Title</option>
+    <option value="dueDate">Due date</option>
+    <option value="duration">Duration</option>
+</select>
+
+<label for="search-input">Search activities</label>
+<input type="search" id="search-input" placeholder="Search by title or tag">
+
+<button type="button" id="export-button">Export Activities</button>
+
+<label for="import-file">Import activities (JSON)</label>
+<input type="file" id="import-file" accept=".json,application/json">
+
+<div id="activity-list"></div>
+
+
+<form id="activity-form">
+    <label for="title">Activity title</label>
+    <input type="text" id="title" name="title" required>
+    <small id="title-error" class="error-message"></small>
+
+    <label for="dueDate">Due date</label>
+    <input type="date" id="dueDate" name="dueDate" required>
+
+    <label for="duration">Duration (minutes)</label>
+    <input type="number" id="duration" name="duration" min="1" required>
+    <small id="duration-error" class="error-message"></small>
+
+    <label for="tag">Tag</label>
+    <input type="text" id="tag" name="tag" required>
+
+    <button type="submit">Add Activity</button>
+</form>
+</section>
+
+<section id="settings">
+<h2>Settings</h2>
+<p>This section helps you customize and manage your planner.</p>
+</section>
+</main>
+
+<footer>
+    <p>&copy; 2026 Campus Life Planner. All rights reserved.</p>
+</footer>
+<p>Testing my planner</p>
+<script src="scripts/validators.js"></script>
+<script src="scripts/app.js"></script>
+</body>
+</html>
+

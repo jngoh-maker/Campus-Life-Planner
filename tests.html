@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Campus Life Planner Tests</title>
+        </head>
+        <body>
+            <h1>Campus Life Planner Tests</h1>
+            <p id="results">Running tests...</p>
+            <script src="scripts/validators.js"></script>
+            <script>
+                const results = [];
+
+                results.push({
+                    name: "Accepts a valid title",
+                    passed: isValidTitle("Study session")
+                });
+
+                results.push({
+                    name: "Rejects a short title",
+                    passed: !isValidTitle("12")
+                });
+
+                const passed = results.filter(function(test) {
+                    return test.passed;
+                }).length;
+
+                document.getElementById("results").textContent = 
+                passed + " of " + results.length + " tests passed. ";
+            </script>
+            </body>
+            </html>
+        
