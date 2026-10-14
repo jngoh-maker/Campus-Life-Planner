@@ -4,6 +4,8 @@ console.log(activityForm);
 
 const activityList = document.getElementById("activity-list");
 const searchInput = document.getElementById("search-input");
+const caseInsensitiveInput = document.getElementById("case-insensitive");
+
 const sortSelect = document.getElementById("sort-select");
 
 let activities = [];
@@ -76,11 +78,12 @@ function displayActivity(activity) {
 
 const activityItem = document.createElement("p");
 
-activityItem.textContent =
-activity.title + " - " +
-activity.dueDate + " - " +
-activity.duration + " minutes - " +
-activity.tag;
+highlightMatches(activityItem, activity.title);
+activityItem.appendChild(document.createTextNode(" - "));
+activityItem.appendChild(document.createTextNode(activity.dueDate + " - "));
+activityItem.appendChild(document.createTextNode(activity.duration + " minutes - "));
+activityItem.appendChild(document.createTextNode(activity.tag));
+
 
 const deleteButton = document.createElement("button");
 deleteButton.textContent = "Delete";
@@ -118,15 +121,31 @@ activityList.appendChild(activityItem);
 }
 
 function searchActivities() {
-    const searchText = searchInput.value.toLowerCase();
+    const validPattern = updateSearchPattern(
+        searchInput.value,
+        caseInsensitiveInput.checked
+    );
+
     const sortBy = sortSelect.value;
 
     activityList.innerHTML = "";
 
-    let filteredActivities = activities.filter(function(activity) {
-        return activity.title.toLowerCase().includes(searchText) ||
-        activity.tag.toLowerCase().includes(searchText);
-    });
+   let filteredActivities = activities.filter(function(activity) { 
+    if (searchInput.value === "") {
+        return true;
+    }
+    if (!validPattern) {
+        return false;
+    }
+
+    currentSearchRegex.lastIndex = 0;
+    const titleMatch = currentSearchRegex.test(activity.title);
+
+    currentSearchRegex.lastIndex = 0;
+    const tagMatch = currentSearchRegex.test(activity.tag);
+
+    return titleMatch || tagMatch;
+   });
 
     filteredActivities.sort(function(a, b) {
         if (sortBy === "title") {
@@ -146,6 +165,7 @@ function searchActivities() {
 
 searchInput.addEventListener("input", searchActivities);
 sortSelect.addEventListener("change", searchActivities);
+caseInsensitiveInput.addEventListener("change", searchActivities);
 
 
     function updateDashboard() {
@@ -172,13 +192,17 @@ document.getElementById("total-hours").textContent =
 totalHours + " hours ";
 
         let topTag = "None yet";
+        let highestCount = 0
 
-        for (let tag in tagCounts) {
-            if (topTag === "None yet" || tagCounts[tag] > tagCounts[topTag]) {
+        for(let tag in tagCounts) {
+            if(tagCounts[tag] > highestCount) {
+                highestCount = tagCounts[tag];
                 topTag = tag;
             }
         }
-     document.getElementById("top-tag").textContent = topTag;
+
+        document.getElementById("top-tag").textContent = topTag;
+     updateTarget();
 
     }
 
@@ -198,9 +222,6 @@ totalHours + " hours ";
 
         URL.revokeObjectURL(link.href);
     });
-
-    updateDashboard();
-    searchActivities();
 
     const importInput = document.getElementById("import-file");
 
@@ -227,7 +248,7 @@ totalHours + " hours ";
                 updateDashboard();
                 searchActivities();
 
-                alert("Activties imported successfully!");
+                alert("Activities imported successfully!");
             } catch (error) {
                 alert("Could not import this file.");
             }
@@ -235,3 +256,56 @@ totalHours + " hours ";
 
         reader.readAsText(file);
     });
+
+    // Study-time target
+    const timeTarget = document.getElementById("time-target");
+    const targetStatus = document.getElementById("target-status");
+
+function updateTarget() {
+const target = Number(timeTarget.value);
+const total = activities.reduce(function(sum, activity) {
+    return sum + Number(activity.duration);
+}, 0);
+
+if (target <= 0) {
+    targetStatus.textContent = "Enter a target greater than zero.";
+} else if (total > target) {
+    targetStatus.textContent =
+    "You have exceeded your target by " +
+    (total - target) + " minutes.";
+} else {
+    targetStatus.textContent = 
+    (target - total) + " minutes remaining toward your target.";
+}
+
+localStorage.setItem("studyTarget", target);
+}
+
+timeTarget.value = localStorage.getItem("studyTarget") || 120;
+timeTarget.addEventListener("input", updateTarget);
+
+// Minutes to hours
+
+const minutesInput = document.getElementById("minutes-input");
+const hoursResult = document.getElementById("hours-result");
+
+
+minutesInput.addEventListener("input", function() {
+    hoursResult.textContent = 
+    minutesInput.value + " minutes = " +
+    (Number(minutesInput.value)/ 60) + "hours";
+});
+
+// Hours to minutes
+const hoursInput = document.getElementById("hours-input");
+const minutesResult = document.getElementById("minutes-result");
+
+hoursInput.addEventListener("input", function() {
+    minutesResult.textContent =
+    hoursInput.value + " hours = " +
+    (Number(hoursInput.value) *60) + " minutes";
+});
+
+updateTarget();
+updateDashboard();
+searchActivities();
