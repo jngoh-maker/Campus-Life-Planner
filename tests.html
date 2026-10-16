@@ -22,6 +22,12 @@
                     passed: !isValidTitle("12")
                 });
 
+                results.push({
+                    name: "Rejects an empty title",
+                    passed: !isValidTitle("")
+                });
+
+
                 const passed = results.filter(function(test) {
                     return test.passed;
                 }).length;
