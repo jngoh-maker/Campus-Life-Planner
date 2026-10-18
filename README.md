@@ -98,6 +98,6 @@ The project includes `seed.json` with sample activity records. The records can b
 
 ## Demo Video
 
-Demo video link: **[Add your unlisted video link here after uploading it.]**
+Demo video link: **https://youtu.be/BFeWk0qLWeQ**
 
 The demonstration should cover keyboard navigation, regex edge cases, and JSON import/export.
